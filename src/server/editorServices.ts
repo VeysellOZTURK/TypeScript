@@ -871,10 +871,7 @@ function forEachResolvedProjectReferenceProjectWorker<T>(
             return undefined;
         }
         const result = cb(ref, loadKind);
-        if (result) {
-            return result;
-        }
-
+        if (result) return result;
         (seenResolvedRefs || (seenResolvedRefs = new Map())).set(canonicalPath, loadKind);
         return ref.references && forEachResolvedProjectReferenceProjectWorker(ref.references, ref.commandLine.options, cb, loadKind, projectService, seenResolvedRefs);
     });
